@@ -14,9 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('admin/login', [AdminDashboardController::class, 'login'])->name('admin.login');
+Route::post('admin/login-check', [AdminDashboardController::class, 'loginCheck'])->name('admin.login.check');
 
+Route::group(['middleware'=>['auth', 'checkAdmin'], 'prefix'=>'admin'],function(){
 
-Route::get('/admin/dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard');
+    
+});
+
 
 
 Route::get('/', function () {
