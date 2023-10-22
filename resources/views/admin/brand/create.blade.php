@@ -71,7 +71,7 @@
                                                 </div>
                                      
 
-                                            <form class="m-3" action="" method="post" enctype="multipart/form-data">
+                                            <form class="m-3" action="{{ route('admin.brand.store') }}" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-3">
                                                     <label for="name" class="form-label">Brand Name :<span class="text-danger"> *</span></label>
@@ -94,7 +94,7 @@
                                                         <div class="mb-3">
                                                             <label for="photo" class="form-label">Brand Photos :<span class="text-danger"> *</span></label>
                                                             <!-- <input type="file" class="form-control" id="photos[]" name="photo" multiple> -->
-                                                            <input type="file" class="form-control" id="photo" name="photo" multiple>
+                                                            <input type="file" class="form-control" id="image" name="image" multiple>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-lg-6">

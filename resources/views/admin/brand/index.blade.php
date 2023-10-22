@@ -29,7 +29,7 @@
             <div class="col-sm-12">
                 <div class="card">
 
-                    <div class="card-header">
+                    <!-- <div class="card-header">
                         <h5>Brand List</h5> 
                         <div class="card-header-right">
                             <div class="btn-group card-option">
@@ -44,7 +44,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                         <div class="col-12">
@@ -55,7 +55,7 @@
                                             <a class="btn btn-outline-info" href="{{ route('admin.brand.create') }}">Add Brand</a>
                                         </div>
                                         <div class="col-md-6 col-lg-6">
-                                            <p class="fw-bold align-right">Total Brand : </p>
+                                            <p class="fw-bold align-right">Total Brand : {{ $brands->count() }}</p>
                                         </div>      
                                     </div>
 
@@ -75,7 +75,23 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="table-group-divider">
-                                                
+                                                @foreach ($brands as $key=>$brand)
+                                                    <tr>
+                                                        <td scope="col">{{ $key+1 }}</td>
+                                                        <td scrope="col">{{ $brand->name }}</td>
+                                                        <td scrope="col">{{ $brand->description }}</td>
+                                                        <td scrope="col">{{ $brand->summary }}</td>
+                                                        <td scrope="col">{{ $brand->image }}</td>
+                                                        <td scrope="col">{{ $brand->status }}</td>
+                                                        <td scope="col">{{ $brand->created_at }}</td>
+                                                        <td scope="col">{{ $brand->updated_at }}</td>
+                                                        <td>
+                                                            <a href="{{ route('admin.brand.edit', $brand->id) }}" class="btn btn-outline-success btn-sm">Edit</a>
+                                                            <a href="{{ route('admin.brand.view', $brand->id) }}" class="btn btn-outline-warning btn-sm">View</a>
+                                                            <a onclick="return confirm('Are You Sure To Delete This')" href="{{ route('admin.brand.delete', $brand->id) }}" class="btn btn-outline-danger btn-sm">Delete</a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

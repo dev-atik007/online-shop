@@ -36,6 +36,11 @@ Route::group(['middleware'=>['auth', 'checkAdmin'], 'prefix'=>'admin'],function(
     // Brand Route
     Route::get('/brand-list', [BrandController::class, 'index'])->name('admin.brand.list');
     Route::get('/brand-create', [BrandController::class, 'create'])->name('admin.brand.create');
+    Route::post('/brand-store', [BrandController::class, 'store'])->name('admin.brand.store');
+    Route::get('/brand-edit/{id}', [BrandController::class, 'edit'])->name('admin.brand.edit');
+    Route::put('/brand-update/{id}', [BrandController::class, 'update'])->name('admin.brand.update');
+    Route::get('/brand-view/{id}', [BrandController::class, 'view'])->name('admin.brand.view');
+    Route::get('/brand-delete/{id}', [BrandController::class, 'delete'])->name('admin.brand.delete');
 
     // Product Route
     Route::get('/product-list', [ProductController::class, 'index'])->name('admin.product.list');

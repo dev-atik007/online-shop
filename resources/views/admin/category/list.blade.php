@@ -90,7 +90,7 @@
                                                     <td>
                                                         <a href="{{ route('admin.category.view', $category->id) }}" class="btn btn-outline-success btn-sm">View</a>
                                                         <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
-                                                        <a href="{{ route('admin.category.delete', $category->id) }}" class="btn btn-outline-danger btn-sm">Delete</a>
+                                                        <a onclick="return confirm('Are You Sure To Delete This')" href="{{ route('admin.category.delete', $category->id) }}" class="btn btn-outline-danger btn-sm">Delete</a>
                                                         
                                                     </td>
                                                 </tr>
