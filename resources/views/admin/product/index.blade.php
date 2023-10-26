@@ -21,23 +21,6 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header">
-                    <h5>Product</h5> 
-                    <div class="card-header-right">
-                        <div class="btn-group card-option">
-                            <button type="button" class="btn dropdown-toggle btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="feather icon-more-horizontal"></i>
-                            </button>
-                            <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
-                                <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
-                                <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
-                                <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
-                                <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -73,30 +56,33 @@
                                                 <th scope="col">Price</th>
                                                 <th scope="col">Weight</th>
                                                 <th scope="col">Status</th>
-                                                <th scope="col">Feater Product</th>
+                                                <th scope="col">Image</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-group-divider">
-                                            
+                                            @foreach ($products as $key=>$product)
+                                                <tr>
+                                                    <td scope="col">{{ $key+1 }}</td>
+                                                    <td scope="col">{{ $product->product_name }}</td>
+                                                    <td scope="col">{{ $product->product_description }}</td>
+                                                    <td scope="col">{{ $product->product_summary }}</td>
+                                                    <td scope="col">{{ optional($product->category)->name }}</td>
+                                                    <td scope="col">{{ optional($product->subcategory)->name }}</td>
+                                                    <td scope="col">{{ optional($product->brand)->name }}</td>
+                                                    <td scope="col">{{ $product->product_quantity }}</td>
+                                                    <td scope="col">{{ $product->product_price }}</td>
+                                                    <td scope="col">{{ $product->product_weight }}</td>
+                                                    <td scope="col">{{ $product->status }}</td>
+                                                    <td scope="col">{{ $product->product_photo }}</td>
+                                                    <td>
+                                                        <a href="" class="btn btn-outline-success btn-sm">View</a>
+                                                        <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-outline-warning btn-sm">Edit</a>
+                                                        <a onclick="return confirm('Are You Sure To Delete This')" href="" class="btn btn-outline-danger btn-sm">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th scope="col">S.L</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Description</th>
-                                                <th scope="col">Summary</th>
-                                                <th scope="col">Category</th>
-                                                <th scope="col">Sub Category</th>
-                                                <th scope="col">Brand</th>
-                                                <th scope="col">Quantity</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Weight</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Feater Product</th>
-                                                <th scope="col">Action</th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>                                
                             </div>

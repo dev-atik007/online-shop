@@ -1,31 +1,13 @@
 @extends('admin.layouts.app')
 @section('content')
-
-<div class="page-header">
-                <div class="page-block">
-                    <div class="row align-items-center">
-                        <div class="col-md-12">
-                            <div class="page-header-title">
-                                <h5 class="m-b-10">Admin Dashboard</h5>
-                            </div>
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="feather icon-home"></i></a>
-                                </li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.product.list')}}">Product</a></li>
-                                <li class="breadcrumb-item"><a href="#">Add Product</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+    
 <div class="row">
     <!-- [ sample-page ] start -->
     <div class="col-sm-12">
         <div class="card">
 
             <div class="card-header">
-                <h5>Product</h5>
+                <h5>Product View</h5>
                 <div class="card-header-right">
                     <div class="btn-group card-option">
                         <button type="button" class="btn dropdown-toggle btn-icon" data-toggle="dropdown"
@@ -52,16 +34,17 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+
                             <div class="row">
                                 <div class="col-md-6 col-lg-6">
-                                    <a class="btn btn-outline-info float-left"
-                                        href="{{route('admin.product.list')}}">Product List</a>
+                                    <a class="btn btn-outline-info float-left" href="{{route('admin.product.list')}}">Product List</a>
                                 </div>
                                 <div class="col-md-6 col-lg-6 float-right">
 
-                                </div>
+                                </div>      
+                            </div>
 
-
+                            <div class="row">
                                 <div class="col-md-12 col-lg-12">
 
                                     @if(count($errors) > 0 )
@@ -77,39 +60,39 @@
                                         </div>
                                     @endif
 
-                                    <form class="m-3" action="{{route('admin.product.store')}}" method="post" enctype="multipart/form-data">
+                                    <form enctype="multipart/form-data" class="m-3" action="" method="post">
                                         @csrf
+                                        @method('PUT')
                                         <div class="mb-3">
                                             <label for="name" class="form-label">Product Name :<span
                                                     class="text-danger"> *</span></label>
                                             <input type="text" class="form-control" id="name" name="product_name"
-                                                placeholder="Enter Product Name">
+                                               value="{{$product->product_name}}">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="summernote2" class="form-label">Product Description :<span
+                                            <label for="summernote1" class="form-label">Product Description :<span
                                                     class="text-danger"> *</span></label>
-                                            <textarea name="product_description" class="form-control" id="summernote2"
-                                                placeholder="Enter Product Description"></textarea>
+                                            <textarea name="product_description" class="form-control" id="summernote1"
+                                               >{{$product->product_description}}</textarea>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="summernote1" class="form-label">Product Summary :<span
+                                            <label for="summernote2" class="form-label">Product Summary :<span
                                                     class="text-danger"> *</span></label>
-                                            <textarea name="product_summary" class="form-control" id="summernote1"
-                                                placeholder="Enter Product Summary"></textarea>
+                                            <textarea name="product_summary" class="form-control" id="summernote2"
+                                                >{{$product->product_summary}}</textarea>
                                         </div>
 
                                         <div class="row">
-                                            <!-- <div class="col-md-6 col-lg-6">
+                                            <div class="col-md-6 col-lg-6">
                                                 <div class="mb-3">
-                                                    <label for="" class="form-label">Product Photos :<span
+                                                    <label for="photo" class="form-label">Product Photos :<span
                                                             class="text-danger"> *</span></label>
-                                                        <input type="file" id="" name="product_image" class="form-control" accept="image/*" multiple >
+                                                            <input type="file" id="photo" name="images[]" class="form-control" accept="image/*" multiple >
+                                                        <div class="col-md-12">
+                                                             
+                                                        </div>
                                                 </div>
-                                            </div> -->
-                                            <div>
-                                                <label for="">Upload Image</label>
-                                                <input name="product_image" type="file" class="form-control">
                                             </div>
                                             <div class="col-md-6 col-lg-6">
                                                 <div class="mb-3">
@@ -117,9 +100,8 @@
                                                             class="text-danger"> *</span></label>
                                                     <select name="product_brand" id="brand" class="form-select"
                                                         aria-label="Default select example">
-                                                        <option selected disabled>Select Brand</option>
-                                                        @foreach ($brands as $brand)
-                                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                                        @foreach($brands as $brand)
+                                                        <option @if($product->product_brand == $brand->id) selected @endif value="{{$brand->id}}">{{$brand->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -133,10 +115,10 @@
                                                             class="text-danger"> *</span></label>
                                                     <select name="product_category" class="form-select"
                                                         aria-label="Default select example">
-                                                        <option selected value="">Select Category</option>
-                                                            @foreach ($categories as $category)
-                                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                            @endforeach
+
+                                                        @foreach($categories as $category)
+                                                        <option @if($product->product_category == $category->id) selected @endif value="{{$category->id}}">{{$category->name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -146,10 +128,10 @@
                                                         :<span class="text-danger"> *</span></label>
                                                     <select name="product_sub_category" id="sub_category"
                                                         class="form-select" aria-label="Default select example">
-                                                        <option selected value="">Select Sub-Category</option>
-                                                            @foreach ($categories as $category)
-                                                                <option value="{{ $category->id }}">{{ $category->product_sub_category }}</option>
-                                                            @endforeach
+
+                                                        @foreach($subcategories as $category)
+                                                        <option @if($product->product_sub_category == $category->id) selected @endif  value="{{$category->id}}">{{$category->name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
 
@@ -162,7 +144,7 @@
                                                     <label for="quantity" class="form-label">Product Quantity :<span
                                                             class="text-danger"> *</span></label>
                                                     <input type="number" class="form-control" id="quantity"
-                                                        name="product_quantity">
+                                                        name="product_quantity" value="{{$product->product_quantity}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4 col-lg-4">
@@ -170,7 +152,7 @@
                                                     <label for="price" class="form-label">Product Price :<span
                                                             class="text-danger"> *</span></label>
                                                     <input type="number" class="form-control" id="price"
-                                                        name="product_price">
+                                                        name="product_price" value="{{$product->product_price}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4 col-lg-4">
@@ -178,12 +160,13 @@
                                                     <label for="weight" class="form-label">Product Weight :<span
                                                             class="text-danger"> *</span></label>
                                                     <input type="number" class="form-control" id="weight"
-                                                        name="product_weight">
+                                                        name="product_weight" value="{{$product->product_weight}}">
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="row">
-                                            <!-- <div class="col-md-6 col-lg-6">
+                                            <div class="col-md-6 col-lg-6">
                                                 <div class="input-group mb-3">
                                                     <label for="feature_product" class="form-label">Feature Product :<span
                                                             class="text-danger"> *</span></label><br>
@@ -191,19 +174,9 @@
                                                         <label class="input-group-text" for="feature_product">Options</label>
                                                     </div>
                                                     <select name='feature_product' class="custom-select" id="feature_product">
-                                                        <option selected>Is Feature</option>
-                                                        <option value="yes">Yes</option>
-                                                        <option value="no">No</option>
+                                                        <option @if($product->feature_product == 'yes') selected @endif value="yes">Yes</option>
+                                                        <option @if($product->feature_product == 'no') selected @endif value="no">No</option>
                                                     </select>
-                                                </div>
-                                            </div> -->
-                                            <div class="row">
-                                                <div class="col-md-6 col-lg-6">
-                                                    <div class="mb-3">
-                                                        <label for="photo" class="form-label">Category Photos :<span
-                                                            class="text-danger"> *</span></label>
-                                                        <input type="file" class="form-control" id="image" name="productImage">
-                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-lg-6">
@@ -213,22 +186,21 @@
                                                     <div class="input-group-prepend">
                                                         <label class="input-group-text" for="status">Options</label>
                                                     </div>
+
                                                     <select name='status' class="custom-select" id="status">
-                                                        <option selected>Choose Status</option>
-                                                        <option value="active">Active</option>
-                                                        <option value="inactive">Inactive</option>
+                                                        <option @if($product->status == 'active') selected @endif value="active">Active</option>
+                                                        <option @if($product->status == 'inactive') selected @endif value="inactive">Inactive</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="reset" class="btn btn-primarty mx-5">Reset</button>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+
+
+                                        <button type="reset" class="btn btn-primary">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </form>
                                 </div>
-
                             </div>
-
-
 
                         </div>
                     </div>
@@ -237,6 +209,29 @@
 
         </div>
     </div>
-    <!-- [ sample-page ] end -->
+
 </div>
+
+
+
+
+
+<!-- Summernote -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#summernote1').summernote({
+            height: 200,
+        });
+        $('.dropdrown-toggle').dropdown();
+    });
+    $(document).ready(function () {
+        $('#summernote2').summernote({
+            height: 200,
+        });
+        $('.dropdrown-toggle').dropdown();
+    });
+
+</script>
+
 @endsection
