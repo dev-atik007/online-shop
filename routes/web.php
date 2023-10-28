@@ -33,7 +33,7 @@ Route::group(['middleware'=>['auth', 'checkAdmin'], 'prefix'=>'admin'],function(
     Route::put('/category-update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::get('/category-view/{id}', [CategoryController::class, 'view'])->name('admin.category.view');
     Route::get('/category-delete/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
-
+    
     // Brand Route
     Route::get('/brand-list', [BrandController::class, 'index'])->name('admin.brand.list');
     Route::get('/brand-create', [BrandController::class, 'create'])->name('admin.brand.create');
@@ -49,14 +49,15 @@ Route::group(['middleware'=>['auth', 'checkAdmin'], 'prefix'=>'admin'],function(
     Route::post('/product-store', [ProductController::class, 'store'])->name('admin.product.store');
     Route::get('/product/-edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
 
-
-
     // Settings Route
     Route::get('/setting-details', [SettingController::class, 'index'])->name('admin.setting.detail');
     Route::get('/setting-create', [SettingController::class, 'create'])->name('admin.setting.create');
     Route::post('/setting-store', [SettingController::class, 'store'])->name('admin.setting.store');
     Route::get('/setting-edit/{id}', [SettingController::class, 'edit'])->name('admin.setting.edit');
     Route::put('/setting-update/{id}', [SettingController::class, 'update'])->name('admin.setting.update');
+
+    //Vendor Route
+    
 
 
 

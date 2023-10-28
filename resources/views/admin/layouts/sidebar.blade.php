@@ -17,7 +17,6 @@
         </div>
       </div>
 
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -73,7 +72,16 @@
             </a>
           </li>
           <!-- Settings end Section -->
-          
+          <!-- vendor Section -->
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Vendor
+              </p>
+            </a>
+          </li>
+          <!-- End Vendor Section -->
           <li class="nav-item">
             <a href="{{ route('admin.logout') }}" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
