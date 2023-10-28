@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -48,7 +49,16 @@ Route::group(['middleware'=>['auth', 'checkAdmin'], 'prefix'=>'admin'],function(
     Route::post('/product-store', [ProductController::class, 'store'])->name('admin.product.store');
     Route::get('/product/-edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
 
-    
+
+
+    // Settings Route
+    Route::get('/setting-details', [SettingController::class, 'index'])->name('admin.setting.detail');
+    Route::get('/setting-create', [SettingController::class, 'create'])->name('admin.setting.create');
+    Route::post('/setting-store', [SettingController::class, 'store'])->name('admin.setting.store');
+    Route::get('/setting-edit/{id}', [SettingController::class, 'edit'])->name('admin.setting.edit');
+    Route::put('/setting-update/{id}', [SettingController::class, 'update'])->name('admin.setting.update');
+
+
 
 });
 

@@ -63,6 +63,16 @@
             </a>
           </li>
           <!-- product end section -->
+          <!-- settings section -->
+          <li class="nav-item">
+            <a href="{{ route('admin.setting.detail') }}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Setting
+              </p>
+            </a>
+          </li>
+          <!-- Settings end Section -->
           
           <li class="nav-item">
             <a href="{{ route('admin.logout') }}" class="nav-link">
