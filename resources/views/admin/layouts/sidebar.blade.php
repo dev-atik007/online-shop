@@ -74,10 +74,10 @@
           <!-- Settings end Section -->
           <!-- vendor Section -->
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route('admin.customer.list') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Vendor
+                Customer
               </p>
             </a>
           </li>

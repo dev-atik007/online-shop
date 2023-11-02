@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +35,7 @@ Route::group(['middleware'=>['auth', 'checkAdmin'], 'prefix'=>'admin'],function(
     Route::put('/category-update/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::get('/category-view/{id}', [CategoryController::class, 'view'])->name('admin.category.view');
     Route::get('/category-delete/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
-    
+
     // Brand Route
     Route::get('/brand-list', [BrandController::class, 'index'])->name('admin.brand.list');
     Route::get('/brand-create', [BrandController::class, 'create'])->name('admin.brand.create');
@@ -56,11 +58,12 @@ Route::group(['middleware'=>['auth', 'checkAdmin'], 'prefix'=>'admin'],function(
     Route::get('/setting-edit/{id}', [SettingController::class, 'edit'])->name('admin.setting.edit');
     Route::put('/setting-update/{id}', [SettingController::class, 'update'])->name('admin.setting.update');
 
-    //Vendor Route
+    //Customer Route
+    Route::get('/customer-list', [CustomerController::class, 'list'])->name('admin.customer.list');
+    Route::get('/customer-create', [CustomerController::class, 'create'])->name('admin.customer.create');
+    Route::post('/customer-store', [CustomerController::class, 'store'])->name('admin.customer.store');
+    Route::get('customer-edit/{id}', [CustomerController::class, 'edit'])->name('admin.customer.edit');
     
-
-
-
 });
 
 
