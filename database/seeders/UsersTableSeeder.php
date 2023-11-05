@@ -21,5 +21,24 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('123456'),
             'role' => 'admin',
         ]);
+
+        User::create([
+            'firstname' => 'atik',
+            'lastname'  => 'vendor',
+            'username'  => 'atikvendor',
+            'email'     => 'atikvendor@gmail.com',
+            'password'  =>  bcrypt('123456'),
+            'role'      => 'vendor',
+            'is_vendor' => 1,
+        ]);
+
+        User::create([
+            'firstname' => 'atik',
+            'lastname'  => 'customer',
+            'username'  => 'atikcustomer',
+            'email'     => 'atikcustomer@gmail.com',
+            'password'  => bcrypt('123456'),
+            'role'      => 'customer',
+        ]);
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\VendorController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Website\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/home', function() {
+    return "This is under construction...";
+});
 
 Route::get('admin/login', [AdminDashboardController::class, 'login'])->name('admin.login');
 Route::post('admin/login-check', [AdminDashboardController::class, 'loginCheck'])->name('admin.login.check');
@@ -68,7 +73,6 @@ Route::group(['middleware'=>['auth', 'checkAdmin'], 'prefix'=>'admin'],function(
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Frontend
+Route::get('/', [DashboardController::class, 'dashboard'])->name('website.dashboard');
 
